@@ -1,6 +1,7 @@
 require_relative "card.rb"
 SAMPLES = ('A'..'Z').to_a
 # hello from board class
+# testing git 
 class Board
     def initialize (n=4)
         @grid = Board.populate(n)
