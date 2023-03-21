@@ -1,6 +1,6 @@
 require_relative "card.rb"
 SAMPLES = ('A'..'Z').to_a
-
+# hello from board class
 class Board
     def initialize (n=4)
         @grid = Board.populate(n)
