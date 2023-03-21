@@ -22,7 +22,7 @@ class Board
             print "#{i} "
             row.each do |card|
                 if card.face
-                    print "#{card.val} "
+                    print "#{card.value} "
                 else
                     print "  "
                 end
@@ -35,12 +35,6 @@ class Board
         @grid.all? {|row| row.all?{|card| card.face}}
     end
 
-    def guess_pos
-        puts "Please enter a position of the card you'd like to flip like '2,3'"
-        pos = gets.chomp.split(',')
-        pos.map(&:to_i)
-    end
-
     def [](pos)
         row, col = pos
         @grid[row][col]
@@ -51,10 +45,10 @@ class Board
     end
 
     def reveal(pos)
-        row,col = pos
-        if !@grid[row][col].face
+        row, col = pos
+        if @grid[row][col].face == false
             @grid[row][col].reveal
-            return @grid[row][col].val
+            return @grid[row][col].value
         else
             puts "That card is already revealed."
         end

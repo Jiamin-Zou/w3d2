@@ -1,5 +1,5 @@
 class Card
-    attr_reader :val, :face
+    attr_reader :value, :face
 
     def initialize (val)
         @value = val
@@ -15,7 +15,7 @@ class Card
     end
 
     def == (card)
-        self.val == card.val
+        self.value == card.value
     end
 
     def to_s

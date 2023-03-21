@@ -5,26 +5,31 @@ class Game
         @board = Board.new
     end
 
-    def turn 
-        pos = @board.guess_pos
-        previous_guess = @board.reveal(pos)
+    def prompt
         @board.render
-        cur_pos = @board.guess_pos
+        puts "Please enter a position of the card you'd like to flip like '2,3'"
+        pos = gets.chomp.split(',')
+        pos.map(&:to_i)
+    end
+
+    def turn
+        pos = self.prompt
+        previous_guess = @board.reveal(pos)
+        cur_pos = self.prompt
         current_guess = @board.reveal(cur_pos)
         @board.render
         if current_guess != previous_guess
-            sleep(2)
             puts "Try again"
+            sleep(2)
             @board[pos].hide
             @board[cur_pos].hide
-            @board.render
         else 
             puts "It's a match"
         end
+        system("clear")
     end
 
     def play
-        @board.render
         while !@board.won?
             self.turn
         end
