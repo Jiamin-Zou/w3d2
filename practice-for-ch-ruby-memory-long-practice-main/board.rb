@@ -9,8 +9,8 @@ class Board
 
     def self.populate(n) #4
         deck = SAMPLES.sample((n*n)/2)
-        deck.map!{|ele| ele = Card.new(ele)}
         deck *=2
+        deck.map!{|ele| ele = Card.new(ele)}
         deck = deck.shuffle.each_slice(4).to_a       
     end
 
@@ -50,11 +50,11 @@ class Board
         self[pos] = val
     end
 
-    def reveal
-        pos = guess_pos
-        if !self[pos].face
-            self[pos].reveal
-            return self[pos].val
+    def reveal(pos)
+        row,col = pos
+        if !@grid[row][col].face
+            @grid[row][col].reveal
+            return @grid[row][col].val
         else
             puts "That card is already revealed."
         end
